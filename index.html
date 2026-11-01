@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zoom-Bilderquiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🔍 Zoom-Bilderquiz</h1>
+    <div class="score">⭐ <span id="score">0</span> Punkte</div>
+  </header>
+
+  <main>
+    <section id="setup" class="card">
+      <h2>Wähle eine Kategorie</h2>
+      <div id="categories" class="categories"></div>
+      <p id="loadError" class="error" hidden></p>
+    </section>
+
+    <section id="game" hidden>
+      <div class="topline">
+        <span id="categoryLabel" class="pill"></span>
+        <span class="stages" id="stages"></span>
+      </div>
+
+      <div class="frame" id="frame">
+        <img id="picture" alt="Quizbild">
+        <div class="loading" id="loading">Bild wird gesucht …</div>
+        <div class="answer" id="answer" hidden></div>
+      </div>
+
+      <div class="timer"><div class="timer-bar" id="timerBar"></div></div>
+
+      <div class="controls" id="guessControls">
+        <button class="btn big primary" id="btnGuess">🙋 Ich weiß es!</button>
+      </div>
+      <div class="controls" id="judgeControls" hidden>
+        <p class="hint">Hattest du recht?</p>
+        <button class="btn big good" id="btnRight">✅ Richtig</button>
+        <button class="btn big bad" id="btnWrong">❌ Falsch</button>
+      </div>
+      <div class="controls" id="nextControls" hidden>
+        <button class="btn big primary" id="btnNext">➡️ Nächstes Bild</button>
+        <button class="btn" id="btnMenu">Kategorie wechseln</button>
+      </div>
+      <p class="credit" id="credit"></p>
+    </section>
+  </main>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+# Suchbegriffe für das Zoom-Bilderquiz
+# [Kategorie] beginnt eine neue Kategorie.
+# Eine Zeile pro Begriff. Optional: Lösung | genauer Suchbegriff (z. B. Igel | Braunbrustigel)
+# Zeilen mit # werden ignoriert.
+
+[🎬 Filmfigur]
+# Tipp: Mit "en:" davor wird nur die englische Wikipedia gefragt – bei Filmfiguren oft besser.
+Shrek | Shrek (character)
+Elsa | Elsa (Frozen)
+Micky Maus | en:Mickey Mouse
+SpongeBob Schwammkopf | SpongeBob SquarePants (character)
+Pikachu | en:Pikachu
+Harry Potter | Harry Potter (character)
+Minions | Minions (Despicable Me)
+Buzz Lightyear
+Lightning McQueen | en:Lightning McQueen
+Simba
+Darth Vader | en:Darth Vader
+Pumuckl
+Die Maus | Die Sendung mit der Maus
+Super Mario | Mario
+Olaf | Olaf (Frozen)
+Woody | en:Sheriff Woody
+Donald Duck | en:Donald Duck
+Goofy | en:Goofy
+Pluto | en:Pluto (Disney)
+Minnie Maus | en:Minnie Mouse
+Dagobert Duck | en:Scrooge McDuck
+Winnie Puuh | en:Winnie-the-Pooh
+Tigger | en:Tigger
+Bambi | en:Bambi (character)
+Pinocchio | en:Pinocchio
+Arielle | en:Ariel (The Little Mermaid)
+Aladdin | en:Aladdin (Disney character)
+Dschinni | en:Genie (Aladdin)
+Rapunzel | en:Rapunzel (Disney)
+Vaiana | en:Moana (character)
+Stitch | en:Stitch (Lilo & Stitch)
+Cinderella | en:Cinderella (Disney character)
+Schneewittchen | en:Snow White (Disney character)
+Belle | en:Belle (Disney character)
+Tinker Bell | en:Tinker Bell
+Captain Hook | en:Captain Hook
+Baymax | en:Baymax
+Mike Glotzkowski | en:Mike Wazowski
+Dorie | en:Dory (Finding Nemo)
+WALL-E | en:WALL-E (character)
+Mr. Incredible | en:Mr. Incredible
+Jessie | en:Jessie (Toy Story)
+Mr. Potato Head | en:Mr. Potato Head
+Po | en:Po (Kung Fu Panda)
+Gru | en:Gru (Despicable Me)
+Esel | en:Donkey (Shrek)
+Der gestiefelte Kater | en:Puss in Boots (Shrek)
+Scrat | en:Scrat
+Bugs Bunny | en:Bugs Bunny
+Daffy Duck | en:Daffy Duck
+Tweety | en:Tweety
+Sylvester | en:Sylvester the Cat
+Tom | en:Tom Cat
+Jerry | en:Jerry Mouse
+Scooby-Doo | en:Scooby-Doo (character)
+Garfield | en:Garfield (character)
+Snoopy | en:Snoopy
+Charlie Brown | en:Charlie Brown
+Homer Simpson | en:Homer Simpson
+Bart Simpson | en:Bart Simpson
+Lisa Simpson | en:Lisa Simpson
+Patrick Star | en:Patrick Star
+Mr. Krabs | en:Mr. Krabs
+Sonic | en:Sonic the Hedgehog (character)
+Prinzessin Peach | en:Princess Peach
+Bowser | en:Bowser (character)
+Yoshi | en:Yoshi
+Donkey Kong | en:Donkey Kong (character)
+Link | en:Link (The Legend of Zelda)
+Kirby | en:Kirby (character)
+Pac-Man | en:Pac-Man (character)
+Glumanda | en:Charmander
+Schiggy | en:Squirtle
+Bisasam | en:Bulbasaur
+Evoli | en:Eevee
+Mewtu | en:Mewtwo
+Spider-Man | en:Spider-Man
+Batman | en:Batman
+Superman | en:Superman
+Iron Man | en:Iron Man
+Hulk | en:Hulk
+Wonder Woman | en:Wonder Woman
+Groot | en:Groot
+Yoda | en:Yoda
+R2-D2 | en:R2-D2
+Chewbacca | en:Chewbacca
+Grogu (Baby Yoda) | en:Grogu
+Gandalf | en:Gandalf
+Gollum | en:Gollum
+Hagrid | en:Rubeus Hagrid
+Paddington | en:Paddington Bear
+Pippi Langstrumpf
+Biene Maja | en:Maya the Bee
+Shaun das Schaf | en:Shaun the Sheep
+Peppa Wutz | en:Peppa Pig (character)
+Barbapapa | en:Barbapapa
+Kermit | en:Kermit the Frog
+Krümelmonster | en:Cookie Monster
+Grinch | en:Grinch
+Rosaroter Panther | en:Pink Panther (character)
+Asterix | en:Asterix (character)
+Obelix | en:Obelix
+Tim und Struppi | en:Tintin (character)
+Jack Sparrow | en:Jack Sparrow
+Indiana Jones | en:Indiana Jones (character)
+Mary Poppins | en:Mary Poppins (character)
+Elmo | en:Elmo
+Bibo | en:Big Bird
+Popeye | en:Popeye
+Papa Schlumpf | en:Papa Smurf
+Schlumpfine | en:Smurfette
+Relaxo | en:Snorlax
+Pummeluff | en:Jigglypuff
+Ursula | en:Ursula (The Little Mermaid)
+Malefiz | en:Maleficent
+Cruella de Vil | en:Cruella de Vil
+Hello Kitty | en:Hello Kitty
+Thomas die Lokomotive | en:Thomas the Tank Engine
+Godzilla | en:Godzilla
+Lucky Luke | en:Lucky Luke
+Pumbaa | en:Timon and Pumbaa
+Woody Woodpecker | en:Woody Woodpecker
+
+[🏰 Stadt & Sehenswürdigkeit]
+# Lösung mit Stadt: "Sehenswürdigkeit – Stadt | Suchbegriff"
+Eiffelturm – Paris | Eiffelturm
+Brandenburger Tor – Berlin | Brandenburger Tor
+Freiheitsstatue – New York | Freiheitsstatue
+Kolosseum – Rom | Kolosseum
+Big Ben – London | Big Ben
+Schloss Neuschwanstein – bei Füssen | Schloss Neuschwanstein
+Schiefer Turm – Pisa | Schiefer Turm von Pisa
+Chinesische Mauer – bei Peking | Chinesische Mauer
+Pyramiden – Gizeh bei Kairo | Pyramiden von Gizeh
+Kölner Dom – Köln | Kölner Dom
+Opernhaus – Sydney | Sydney Opera House
+Taj Mahal – Agra | Taj Mahal
+Golden Gate Bridge – San Francisco | Golden Gate Bridge
+Tower Bridge – London | Tower Bridge
+Christusstatue – Rio de Janeiro | Christ the Redeemer (statue)
+Akropolis – Athen | Akropolis (Athen)
+Sagrada Família – Barcelona | Sagrada Família
+Petersdom – Rom | Petersdom
+Trevi-Brunnen – Rom | Fontana di Trevi
+Pantheon – Rom | Pantheon (Rom)
+Markusdom – Venedig | Markusdom
+Rialtobrücke – Venedig | Rialtobrücke
+Mailänder Dom – Mailand | Mailänder Dom
+Vesuv – bei Neapel | Vesuv
+Atomium – Brüssel | Atomium
+Manneken Pis – Brüssel | Manneken Pis
+Triumphbogen – Paris | Arc de Triomphe de l’Étoile
+Louvre – Paris | Louvre
+Notre-Dame – Paris | Notre-Dame de Paris
+Sacré-Cœur – Paris | Sacré-Cœur de Montmartre
+Schloss Versailles – Versailles | Schloss Versailles
+Mont-Saint-Michel – Normandie | Mont-Saint-Michel
+Buckingham Palace – London | Buckingham Palace
+London Eye – London | London Eye
+Tower of London – London | Tower of London
+Stonehenge – bei Salisbury | Stonehenge
+Edinburgh Castle – Edinburgh | Edinburgh Castle
+Alhambra – Granada | Alhambra
+Torre de Belém – Lissabon | Torre de Belém
+Kreml – Moskau | Moskauer Kreml
+Basilius-Kathedrale – Moskau | Basilius-Kathedrale
+Hagia Sophia – Istanbul | Hagia Sophia
+Blaue Moschee – Istanbul | Sultan-Ahmed-Moschee
+Galataturm – Istanbul | Galataturm
+Petra – Jordanien | Petra (Jordanien)
+Burj Khalifa – Dubai | Burj Khalifa
+Burj al Arab – Dubai | Burj al Arab
+Sphinx – Gizeh bei Kairo | Große Sphinx von Gizeh
+Abu Simbel – Ägypten | Abu Simbel
+Tafelberg – Kapstadt | Tafelberg
+Victoriafälle – Sambia/Simbabwe | Victoriafälle
+Kilimandscharo – Tansania | Kilimandscharo
+Empire State Building – New York | Empire State Building
+Times Square – New York | Times Square
+Brooklyn Bridge – New York | Brooklyn Bridge
+Central Park – New York | Central Park
+Weißes Haus – Washington | Weißes Haus
+Kapitol – Washington | Kapitol der Vereinigten Staaten
+Lincoln Memorial – Washington | Lincoln Memorial
+Mount Rushmore – South Dakota | Mount Rushmore National Memorial
+Grand Canyon – Arizona | Grand Canyon
+Space Needle – Seattle | Space Needle
+Niagarafälle – Kanada/USA | Niagarafälle
+CN Tower – Toronto | CN Tower
+Gedächtniskirche – Berlin | Kaiser-Wilhelm-Gedächtniskirche
+Machu Picchu – Peru | Machu Picchu
+Michel – Hamburg | Hauptkirche Sankt Michaelis (Hamburg)
+Moai-Statuen – Osterinsel | Moai
+Iguazú-Wasserfälle – Argentinien/Brasilien | Iguazú-Wasserfälle
+Harbour Bridge – Sydney | Sydney Harbour Bridge
+Uluru – Australien | Uluru
+Petronas Towers – Kuala Lumpur | Petronas Towers
+Marina Bay Sands – Singapur | Marina Bay Sands
+Angkor Wat – Kambodscha | Angkor Wat
+Verbotene Stadt – Peking | Verbotene Stadt
+Terrakotta-Armee – Xi’an | Terrakotta-Armee
+Fuji – Japan | Fuji (Vulkan)
+Tokyo Skytree – Tokio | Tokyo Skytree
+Tokyo Tower – Tokio | Tokyo Tower
+Goldener Pavillon – Kyōto | Kinkaku-ji
+Dom – Aachen | Aachener Dom
+India Gate – Neu-Delhi | India Gate
+Goldener Tempel – Amritsar | Harmandir Sahib
+Reichstag – Berlin | Reichstagsgebäude
+Neues Rathaus – München | Neues Rathaus (München)
+Siegessäule – Berlin | Siegessäule (Berlin)
+Berliner Dom – Berlin | Berliner Dom
+Schloss Sanssouci – Potsdam | Schloss Sanssouci
+Holstentor – Lübeck | Holstentor
+Elbphilharmonie – Hamburg | Elbphilharmonie
+Speicherstadt – Hamburg | Speicherstadt
+Frauenkirche – Dresden | Frauenkirche (Dresden)
+Zwinger – Dresden | Dresdner Zwinger
+Frauenkirche – München | Frauenkirche (München)
+Olympiaturm – München | Olympiaturm
+Wartburg – Eisenach | Wartburg
+Heidelberger Schloss – Heidelberg | Heidelberger Schloss
+Porta Nigra – Trier | Porta Nigra
+Ulmer Münster – Ulm | Ulmer Münster
+Hermannsdenkmal – bei Detmold | Hermannsdenkmal
+Zugspitze – bei Garmisch-Partenkirchen | Zugspitze
+Burg Hohenzollern – bei Hechingen | Burg Hohenzollern
+Bremer Stadtmusikanten – Bremen | Die Bremer Stadtmusikanten (Skulptur)
+Königsstuhl – Rügen | Königsstuhl (Rügen)
+Stephansdom – Wien | Stephansdom
+Schloss Schönbrunn – Wien | Schloss Schönbrunn
+Riesenrad – Wien | Wiener Riesenrad
+Matterhorn – Zermatt | Matterhorn
+Kapellbrücke – Luzern | Kapellbrücke
+Karlsbrücke – Prag | Karlsbrücke
+Prager Burg – Prag | Prager Burg
+Kettenbrücke – Budapest | Széchenyi-Kettenbrücke
+Parlament – Budapest | Parlamentsgebäude (Budapest)
+Kleine Meerjungfrau – Kopenhagen | Kleine Meerjungfrau
+Nyhavn – Kopenhagen | Nyhavn
+Windmühlen – Kinderdijk | Kinderdijk
+Pont du Gard – bei Nîmes | Pont du Gard
+
+[🐾 Tiere]
+Giraffe
+Zebra
+Erdmännchen
+Pinguin | Kaiserpinguin
+Chamäleon | Chameleon
+Flamingo
+Koala
+Igel | Braunbrustigel
+Papagei | Scharlachara
+Faultier | Dreifinger-Faultiere
+Oktopus | Gewöhnlicher Krake
+Marienkäfer | Siebenpunkt-Marienkäfer
+Löwe
+Tiger
+Elefant | Afrikanischer Elefant
+Nashorn | Breitmaulnashorn
+Nilpferd | Flusspferd
+Gorilla | Westlicher Gorilla
+Schimpanse | Gemeiner Schimpanse
+Orang-Utan | Borneo-Orang-Utan
+Eisbär
+Braunbär
+Großer Panda
+Roter Panda | Kleiner Panda
+Känguru | Östliches Graues Riesenkänguru
+Kamel | Trampeltier
+Dromedar
+Lama | Lama (Kamel)
+Alpaka
+Wolf
+Fuchs | Rotfuchs
+Waschbär
+Dachs | Europäischer Dachs
+Eichhörnchen | Eurasisches Eichhörnchen
+Biber | Europäischer Biber
+Hirsch | Rothirsch
+Reh
+Wildschwein
+Elch
+Rentier | Ren
+Bison | Amerikanischer Bison
+Leopard
+Gepard
+Jaguar
+Luchs | Eurasischer Luchs
+Hyäne | Tüpfelhyäne
+Gnu | Streifengnu
+Okapi
+Tapir | Flachlandtapir
+Seehund
+Walross
+Delfin | Großer Tümmler
+Orca | Schwertwal
+Buckelwal
+Hai | Weißer Hai
+Hammerhai | Bogenstirn-Hammerhai
+Mantarochen | Riesenmanta
+Meeresschildkröte | Suppenschildkröte
+Seepferdchen
+Clownfisch | Orangeringel-Anemonenfisch
+Qualle | Ohrenqualle
+Seestern | Gemeiner Seestern
+Krabbe | Strandkrabbe
+Hummer | Europäischer Hummer
+Krokodil | Leistenkrokodil
+Alligator | Mississippi-Alligator
+Python | Dunkler Tigerpython
+Kobra | Königskobra
+Leguan | Grüner Leguan
+Gecko | Tokeh
+Frosch | Grasfrosch
+Laubfrosch | Europäischer Laubfrosch
+Pfeilgiftfrosch | Erdbeerfröschchen
+Axolotl
+Schnecke | Weinbergschnecke
+Schmetterling | Tagpfauenauge
+Biene | Westliche Honigbiene
+Hummel | Dunkle Erdhummel
+Ameise | Rote Waldameise
+Libelle | Große Königslibelle
+Spinne | Gartenkreuzspinne
+Vogelspinne | Brachypelma smithi
+Heuschrecke | Grünes Heupferd
+Adler | Steinadler
+Weißkopfseeadler
+Eule | Schleiereule
+Uhu
+Tukan | Riesentukan
+Kolibri | Rubinkehlkolibri
+Pfau | Blauer Pfau
+Strauß | Afrikanischer Strauß
+Storch | Weißstorch
+Schwan | Höckerschwan
+Ente | Stockente
+Papageitaucher
+Specht | Buntspecht
+Rotkehlchen
+Möwe | Silbermöwe
+Kakadu | Gelbhaubenkakadu
+Pelikan | Rosapelikan
+Wellensittich
+Dackel
+Dalmatiner
+Mops
+Katze | Europäisch Kurzhaar
+Pferd | Hauspferd
+Esel | Hausesel
+Kuh | Hausrind
+Schaf | Hausschaf
+Ziege | Hausziege
+Schwein | Hausschwein
+Huhn | Haushuhn
+Kaninchen | Hauskaninchen
+Meerschweinchen | Hausmeerschweinchen
+Hamster | Goldhamster
+Fledermaus | Großes Mausohr
+Maulwurf | Europäischer Maulwurf
+Otter | Fischotter
+Seeotter
+Lemur | Katta
+Ameisenbär | Großer Ameisenbär
+Gürteltier | Neunbinden-Gürteltier
+Schnabeltier
+Wombat | Nacktnasenwombat
+
+[🍕 Essen]
+Pizza
+Brezel
+Ananas | en:Pineapple
+Erdbeere | en:Strawberry
+Spaghetti
+Wassermelone
+Croissant
+Brokkoli
+Apfel | en:Apple
+Banane | en:Banana
+Birne | en:Pear
+Kirsche | en:Cherry
+Pfirsich
+Zitrone
+Orange | en:Orange (fruit)
+Mango | en:Mango
+Kiwi | Kiwifrucht
+Weintrauben | Weintraube
+Heidelbeere | en:Blueberry
+Himbeere | en:Raspberry
+Brombeere | en:Blackberry
+Avocado | en:Avocado
+Pflaume | en:Plum
+Aprikose | en:Apricot
+Honigmelone | en:Honeydew (melon)
+Karotte | en:Carrot
+Tomate | en:Tomato
+Gurke | en:Cucumber
+Paprika | en:Bell pepper
+Kartoffel | en:Potato
+Zwiebel | en:Onion
+Knoblauch
+Maiskolben | en:Corn on the cob
+Erbsen | en:Pea
+Kürbis | en:Pumpkin
+Blumenkohl
+Rotkohl | en:Red cabbage
+Aubergine | en:Eggplant
+Zucchini | en:Zucchini
+Champignon | Zuchtchampignon
+Radieschen | en:Radish
+Salat | en:Lettuce
+Lauch | en:Leek
+Hamburger
+Pommes frites
+Hotdog | Hot Dog
+Döner | Döner Kebab
+Currywurst
+Bratwurst
+Sushi
+Taco
+Burrito
+Lasagne
+Ravioli
+Risotto
+Paella
+Schnitzel | Wiener Schnitzel
+Spätzle
+Pfannkuchen
+Waffel
+Crêpe
+Brot | en:Bread
+Brötchen
+Bagel
+Donut
+Muffin
+Cupcake
+Berliner | Berliner Pfannkuchen
+Käsekuchen
+Schwarzwälder Kirschtorte
+Apfelstrudel
+Lebkuchen
+Spekulatius
+Eis | Speiseeis
+Schokolade
+Popcorn
+Gummibärchen | Gummibär
+Zuckerwatte
+Lutscher
+Marshmallow
+Honig
+Käse | Emmentaler
+Butter
+Milch
+Joghurt
+Spiegelei
+Rührei
+Müsli
+Cornflakes
+Tomatensuppe
+Nachos
+Erdnuss
+Walnuss | en:Walnut
+Haselnuss | en:Hazelnut
+Ketchup | Tomatenketchup
+Wackelpudding | Götterspeise
+Milchreis
+Kaiserschmarrn
+Frikadelle
+Fischstäbchen
+Kartoffelsalat
+Tortellini
+Gnocchi
+Falafel
+Frühlingsrolle
+Oliven | Olive
+Wiener Würstchen
+Macarons | en:Macaron
+Zimtschnecke | en:Cinnamon roll
+Kartoffelbrei | en:Mashed potato
+Pfannkuchen-Turm | en:Pancake
+Milchshake | en:Milkshake
+Brathähnchen | en:Roast chicken
