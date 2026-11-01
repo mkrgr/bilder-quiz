@@ -4,6 +4,15 @@ Ein Bild wird stark vergrößert gezeigt und alle 3 Sekunden ein Stück herausge
 bis das ganze Bild zu sehen ist und die Lösung erscheint. Wer früher rät, bekommt mehr Punkte
 (Stufe 1 = 6 Punkte … letzte Stufe = 1 Punkt).
 
+## Teams & Rangliste
+
+- Vor dem Spiel Teams anlegen (bis zu 8), Namen eintippen und Farbe wählen. Teams werden im Browser gemerkt.
+- Anzahl Bilder pro Spiel wählen (5, 10, 15 oder 20).
+- Nach jeder Auflösung tippt man an, welches Team es wusste – bei Gleichstand mehrere.
+  Alle gewählten Teams bekommen die Punkte der aktuellen Stufe. „Niemand“ vergibt keine Punkte.
+- Am Ende: Rangliste für dieses Spiel und die ewige Rangliste (Punkte, Siege, Spiele).
+  Die ewige Rangliste ordnet nach Teamnamen zu und wird nur in diesem Browser gespeichert.
+
 ## Starten
 
 Die Seite muss über einen kleinen Webserver laufen (sonst darf der Browser `begriffe.txt` nicht lesen):

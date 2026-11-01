@@ -11,19 +11,37 @@
 <body>
   <header>
     <h1>🔍 Zoom-Bilderquiz</h1>
-    <div class="score">⭐ <span id="score">0</span> Punkte</div>
+    <div class="scoreboard" id="scoreboard"></div>
   </header>
 
   <main>
-    <section id="setup" class="card">
-      <h2>Wähle eine Kategorie</h2>
-      <div id="categories" class="categories"></div>
-      <p id="loadError" class="error" hidden></p>
+    <section id="setup">
+      <div class="card">
+        <h2>1. Teams</h2>
+        <div id="teamList" class="team-list"></div>
+        <button class="btn" id="btnAddTeam">➕ Team hinzufügen</button>
+      </div>
+
+      <div class="card">
+        <h2>2. Wie viele Bilder?</h2>
+        <div class="rounds" id="roundChoice"></div>
+      </div>
+
+      <div class="card">
+        <h2>3. Kategorie wählen &amp; los!</h2>
+        <div id="categories" class="categories"></div>
+        <p id="loadError" class="error" hidden></p>
+      </div>
+
+      <div class="card">
+        <button class="btn" id="btnShowAlltime">🏆 Ewige Rangliste ansehen</button>
+      </div>
     </section>
 
     <section id="game" hidden>
       <div class="topline">
         <span id="categoryLabel" class="pill"></span>
+        <span id="roundLabel" class="round-label"></span>
         <span class="stages" id="stages"></span>
       </div>
 
@@ -39,15 +57,37 @@
         <button class="btn big primary" id="btnGuess">🙋 Ich weiß es!</button>
       </div>
       <div class="controls" id="judgeControls" hidden>
-        <p class="hint">Hattest du recht?</p>
-        <button class="btn big good" id="btnRight">✅ Richtig</button>
-        <button class="btn big bad" id="btnWrong">❌ Falsch</button>
+        <p class="hint">Wer hat's gewusst? <span id="pointsHint" class="points-hint"></span></p>
+        <div class="team-picks" id="teamPicks"></div>
+        <div class="controls">
+          <button class="btn big primary" id="btnAward">✔️ Punkte vergeben</button>
+          <button class="btn big" id="btnNobody">🤷 Niemand</button>
+        </div>
       </div>
       <div class="controls" id="nextControls" hidden>
         <button class="btn big primary" id="btnNext">➡️ Nächstes Bild</button>
-        <button class="btn" id="btnMenu">Kategorie wechseln</button>
+        <button class="btn" id="btnEnd">🏁 Spiel beenden</button>
       </div>
       <p class="credit" id="credit"></p>
+    </section>
+
+    <section id="ranking" hidden>
+      <div class="card" id="gameRankingCard">
+        <h2>🏆 Rangliste – dieses Spiel</h2>
+        <ol class="ranking" id="gameRanking"></ol>
+      </div>
+      <div class="card">
+        <h2>⭐ Ewige Rangliste</h2>
+        <table class="alltime">
+          <thead><tr><th>#</th><th>Team</th><th>Punkte</th><th>Siege</th><th>Spiele</th></tr></thead>
+          <tbody id="alltimeRanking"></tbody>
+        </table>
+        <p class="hint-small" id="alltimeEmpty" hidden>Noch keine Spiele gespeichert.</p>
+      </div>
+      <div class="controls">
+        <button class="btn big primary" id="btnAgain">🔁 Neues Spiel</button>
+        <button class="btn" id="btnResetAlltime">Ewige Rangliste löschen</button>
+      </div>
     </section>
   </main>
 

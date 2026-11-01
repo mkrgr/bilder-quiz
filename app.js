@@ -3,20 +3,43 @@
   const $ = (id) => document.getElementById(id);
 
   const els = {
-    setup: $("setup"), game: $("game"), categories: $("categories"), loadError: $("loadError"),
-    categoryLabel: $("categoryLabel"), stages: $("stages"), picture: $("picture"),
+    setup: $("setup"), game: $("game"), ranking: $("ranking"),
+    categories: $("categories"), loadError: $("loadError"),
+    teamList: $("teamList"), roundChoice: $("roundChoice"), scoreboard: $("scoreboard"),
+    categoryLabel: $("categoryLabel"), roundLabel: $("roundLabel"), stages: $("stages"), picture: $("picture"),
     loading: $("loading"), answer: $("answer"), timerBar: $("timerBar"), credit: $("credit"),
     guessControls: $("guessControls"), judgeControls: $("judgeControls"), nextControls: $("nextControls"),
-    score: $("score"),
+    teamPicks: $("teamPicks"), pointsHint: $("pointsHint"),
+    gameRankingCard: $("gameRankingCard"), gameRanking: $("gameRanking"),
+    alltimeRanking: $("alltimeRanking"), alltimeEmpty: $("alltimeEmpty"),
   };
 
+  const COLORS = ["#e63946", "#f77f00", "#2b9348", "#1d7bd8", "#7b2cbf", "#d63384", "#2a9d8f", "#8d5524"];
+  const ROUND_OPTIONS = [5, 10, 15, 20];
+  const STORE_TEAMS = "bilderquiz-teams";
+  const STORE_ALLTIME = "bilderquiz-alltime";
+  const STORE_ROUNDS = "bilderquiz-rounds";
+
   let categories = {};   // { "Filmfigur": [{ name, query }, ...] }
-  let queue = [];        // gemischte Begriffe der aktuellen Runde
+  let queue = [];        // gemischte Begriffe des aktuellen Spiels
   let currentCategory = null;
-  let current = null;    // { name, query, category }
+  let current = null;    // { name, query, category, credit }
   let step = 0;
   let timer = null;
-  let score = 0;
+
+  let teams = [];        // [{ name, color, score }]
+  let picked = new Set(); // Indizes der Teams, die in dieser Runde Punkte bekommen
+  let totalRounds = 10;
+  let round = 0;
+  let gameSaved = false;
+
+  // ---------- Speicher (localStorage kann fehlen, z. B. im privaten Modus) ----------
+  function load(key, fallback) {
+    try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch { return fallback; }
+  }
+  function save(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* egal */ }
+  }
 
   // ---------- Begriffe-Datei lesen ----------
   // Format:  [Kategorie]  danach eine Zeile pro Begriff,
@@ -64,9 +87,86 @@
       b.onclick = onClick;
       els.categories.appendChild(b);
     };
-    for (const [cat, terms] of all) addButton(cat, terms.length, () => startCategory(cat));
+    for (const [cat, terms] of all) addButton(cat, terms.length, () => startGame(cat));
     const total = all.reduce((n, [, t]) => n + t.length, 0);
-    addButton("🎲 Alles gemischt", total, () => startCategory(null));
+    addButton("🎲 Alles gemischt", total, () => startGame(null));
+  }
+
+  // ---------- Teams einrichten ----------
+  function saveTeams() {
+    save(STORE_TEAMS, teams.map(({ name, color }) => ({ name, color })));
+  }
+
+  function addTeam() {
+    if (teams.length >= COLORS.length) return;
+    const used = new Set(teams.map((t) => t.color));
+    const color = COLORS.find((c) => !used.has(c)) || COLORS[0];
+    teams.push({ name: `Team ${teams.length + 1}`, color, score: 0 });
+    saveTeams();
+    renderTeamList();
+  }
+
+  function renderTeamList() {
+    els.teamList.innerHTML = "";
+    teams.forEach((team, i) => {
+      const row = document.createElement("div");
+      row.className = "team-row";
+      row.style.setProperty("--team", team.color);
+
+      const input = document.createElement("input");
+      input.className = "team-name";
+      input.value = team.name;
+      input.maxLength = 20;
+      input.setAttribute("aria-label", `Name von Team ${i + 1}`);
+      input.oninput = () => { team.name = input.value; saveTeams(); };
+
+      const swatches = document.createElement("div");
+      swatches.className = "swatches";
+      for (const c of COLORS) {
+        const s = document.createElement("button");
+        s.className = "swatch" + (c === team.color ? " active" : "");
+        s.style.background = c;
+        s.setAttribute("aria-label", "Farbe wählen");
+        s.onclick = () => { team.color = c; saveTeams(); renderTeamList(); };
+        swatches.appendChild(s);
+      }
+
+      const del = document.createElement("button");
+      del.className = "btn remove";
+      del.textContent = "✕";
+      del.title = "Team entfernen";
+      del.disabled = teams.length <= 1;
+      del.onclick = () => { teams.splice(i, 1); saveTeams(); renderTeamList(); };
+
+      row.append(input, swatches, del);
+      els.teamList.appendChild(row);
+    });
+    $("btnAddTeam").disabled = teams.length >= COLORS.length;
+  }
+
+  function renderRoundChoice() {
+    els.roundChoice.innerHTML = "";
+    for (const n of ROUND_OPTIONS) {
+      const b = document.createElement("button");
+      b.className = "btn" + (n === totalRounds ? " primary" : "");
+      b.textContent = `${n} Bilder`;
+      b.onclick = () => { totalRounds = n; save(STORE_ROUNDS, n); renderRoundChoice(); };
+      els.roundChoice.appendChild(b);
+    }
+  }
+
+  function teamLabel(team) {
+    return team.name.trim() || "Ohne Namen";
+  }
+
+  function renderScoreboard() {
+    els.scoreboard.innerHTML = teams
+      .map((t) => `<span class="chip" style="--team:${t.color}">${escapeHtml(teamLabel(t))} <b>${t.score}</b></span>`)
+      .join("");
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   }
 
   // ---------- Bildersuche ----------
@@ -148,11 +248,21 @@
     queue = shuffle(entries);
   }
 
-  function startCategory(cat) {
+  function showScreen(name) {
+    els.setup.hidden = name !== "setup";
+    els.game.hidden = name !== "game";
+    els.ranking.hidden = name !== "ranking";
+    els.scoreboard.hidden = name !== "game";
+  }
+
+  function startGame(cat) {
     currentCategory = cat;
     buildQueue();
-    els.setup.hidden = true;
-    els.game.hidden = false;
+    teams.forEach((t) => (t.score = 0));
+    round = 0;
+    gameSaved = false;
+    renderScoreboard();
+    showScreen("game");
     nextRound();
   }
 
@@ -189,8 +299,11 @@
   }
 
   async function nextRound() {
+    if (round >= totalRounds) return endGame();
     stopTimer();
     if (!queue.length) buildQueue();
+    round++;
+    els.roundLabel.textContent = `Bild ${round} von ${totalRounds}`;
     showControls(null);
     els.answer.hidden = true;
     els.credit.textContent = "";
@@ -249,33 +362,139 @@
     }, cfg.secondsPerStep * 1000);
   }
 
+  // Je früher erraten, desto mehr Punkte
+  function roundPoints() {
+    return cfg.zoomSteps.length - step;
+  }
+
   function reveal() {
     stopTimer();
     setZoom(1, true);
     els.answer.textContent = current.name;
     els.answer.hidden = false;
     els.credit.textContent = `Bild: ${current.credit}`;
+    picked = new Set();
+    const pts = roundPoints();
+    els.pointsHint.textContent = `(+${pts} ${pts === 1 ? "Punkt" : "Punkte"})`;
+    renderTeamPicks();
     showControls("judge");
   }
 
-  function judge(correct) {
-    if (correct) {
-      // Je früher erraten, desto mehr Punkte
-      score += cfg.zoomSteps.length - step;
-      els.score.textContent = score;
-    }
+  // Mehrere Teams wählbar, z. B. bei Gleichstand
+  function renderTeamPicks() {
+    els.teamPicks.innerHTML = "";
+    teams.forEach((team, i) => {
+      const b = document.createElement("button");
+      b.className = "btn big team-pick" + (picked.has(i) ? " picked" : "");
+      b.style.setProperty("--team", team.color);
+      b.setAttribute("aria-pressed", picked.has(i));
+      b.textContent = (picked.has(i) ? "✅ " : "") + teamLabel(team);
+      b.onclick = () => {
+        picked.has(i) ? picked.delete(i) : picked.add(i);
+        renderTeamPicks();
+      };
+      els.teamPicks.appendChild(b);
+    });
+    $("btnAward").disabled = picked.size === 0;
+  }
+
+  function award(teamIndexes) {
+    const pts = roundPoints();
+    for (const i of teamIndexes) teams[i].score += pts;
+    renderScoreboard();
+    $("btnNext").textContent = round >= totalRounds ? "🏆 Zur Rangliste" : "➡️ Nächstes Bild";
     showControls("next");
   }
 
-  $("btnGuess").onclick = reveal;
-  $("btnRight").onclick = () => judge(true);
-  $("btnWrong").onclick = () => judge(false);
-  $("btnNext").onclick = nextRound;
-  $("btnMenu").onclick = () => {
+  // ---------- Rangliste ----------
+  function sortedTeams() {
+    return [...teams].sort((a, b) => b.score - a.score);
+  }
+
+  function saveAlltime() {
+    if (gameSaved || round === 0) return;
+    gameSaved = true;
+    const alltime = load(STORE_ALLTIME, {});
+    const best = Math.max(...teams.map((t) => t.score));
+    for (const t of teams) {
+      const key = teamLabel(t).toLowerCase();
+      const entry = alltime[key] || { name: teamLabel(t), points: 0, wins: 0, games: 0 };
+      entry.name = teamLabel(t);
+      entry.color = t.color;
+      entry.points += t.score;
+      entry.games += 1;
+      if (best > 0 && t.score === best) entry.wins += 1;
+      alltime[key] = entry;
+    }
+    save(STORE_ALLTIME, alltime);
+  }
+
+  function renderGameRanking() {
+    const medals = ["🥇", "🥈", "🥉"];
+    let place = 0, lastScore = null;
+    els.gameRanking.innerHTML = sortedTeams()
+      .map((t, i) => {
+        if (t.score !== lastScore) place = i; // gleiche Punkte = gleicher Platz
+        lastScore = t.score;
+        return `<li style="--team:${t.color}"><span class="medal">${medals[place] || place + 1 + "."}</span>
+          <span class="dot"></span><span class="rank-name">${escapeHtml(teamLabel(t))}</span>
+          <span class="rank-score">${t.score}</span></li>`;
+      })
+      .join("");
+  }
+
+  function renderAlltime() {
+    const rows = Object.values(load(STORE_ALLTIME, {}))
+      .sort((a, b) => b.points - a.points || b.wins - a.wins);
+    els.alltimeEmpty.hidden = rows.length > 0;
+    els.alltimeRanking.innerHTML = rows
+      .map((r, i) => `<tr><td>${i + 1}</td>
+        <td><span class="dot" style="--team:${r.color || "#999"}"></span> ${escapeHtml(r.name)}</td>
+        <td>${r.points}</td><td>${r.wins}</td><td>${r.games}</td></tr>`)
+      .join("");
+  }
+
+  function endGame() {
     stopTimer();
-    els.game.hidden = true;
-    els.setup.hidden = false;
+    saveAlltime();
+    renderGameRanking();
+    renderAlltime();
+    els.gameRankingCard.hidden = round === 0;
+    showScreen("ranking");
+  }
+
+  function showAlltimeOnly() {
+    renderAlltime();
+    els.gameRankingCard.hidden = true;
+    showScreen("ranking");
+  }
+
+  // ---------- Start ----------
+  $("btnAddTeam").onclick = addTeam;
+  $("btnGuess").onclick = reveal;
+  $("btnAward").onclick = () => award(picked);
+  $("btnNobody").onclick = () => award([]);
+  $("btnNext").onclick = nextRound;
+  $("btnEnd").onclick = endGame;
+  $("btnAgain").onclick = () => { showScreen("setup"); renderTeamList(); };
+  $("btnShowAlltime").onclick = showAlltimeOnly;
+  $("btnResetAlltime").onclick = () => {
+    if (confirm("Ewige Rangliste wirklich löschen?")) {
+      save(STORE_ALLTIME, {});
+      renderAlltime();
+    }
   };
 
+  teams = load(STORE_TEAMS, []).map((t) => ({ ...t, score: 0 }));
+  if (!teams.length) {
+    teams = [
+      { name: "Team Rot", color: COLORS[0], score: 0 },
+      { name: "Team Blau", color: COLORS[3], score: 0 },
+    ];
+  }
+  totalRounds = load(STORE_ROUNDS, 10);
+  renderTeamList();
+  renderRoundChoice();
+  showScreen("setup");
   loadTerms();
 })();
