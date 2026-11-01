@@ -387,7 +387,6 @@ Apfel | en:Apple
 Banane | en:Banana
 Birne | en:Pear
 Kirsche | en:Cherry
-Pfirsich
 Zitrone
 Orange | en:Orange (fruit)
 Mango | en:Mango
