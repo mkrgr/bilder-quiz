@@ -1,5 +1,7 @@
 # Zoom-Bilderquiz
 
+[Spielen](https://mkrgr.github.io/bilder-quiz/)
+
 Ein Bild wird stark vergrößert gezeigt und alle 3 Sekunden ein Stück herausgezoomt,
 bis das ganze Bild zu sehen ist und die Lösung erscheint. Wer früher rät, bekommt mehr Punkte
 (Stufe 1 = 6 Punkte … letzte Stufe = 1 Punkt).
