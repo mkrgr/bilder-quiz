@@ -253,7 +253,54 @@
     els.game.hidden = name !== "game";
     els.ranking.hidden = name !== "ranking";
     els.scoreboard.hidden = name !== "game";
+    document.body.classList.toggle("in-game", name === "game");
+    if (name !== "game" && fsElement()) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
   }
+
+  // ---------- Präsentationsmodus (Vollbild) ----------
+  // Safari (iPad) kennt teils nur die webkit-Varianten der Fullscreen-API.
+  const fsElement = () => document.fullscreenElement || document.webkitFullscreenElement;
+  const root = document.documentElement;
+
+  function togglePresentation() {
+    if (fsElement()) {
+      (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      return;
+    }
+    const req = root.requestFullscreen || root.webkitRequestFullscreen;
+    if (!req) { document.body.classList.toggle("presenting"); return; }
+    const p = req.call(root);
+    if (p && p.catch) p.catch(() => document.body.classList.toggle("presenting"));
+  }
+
+  // Sichtbare Höhe messen statt 100vh zu vertrauen (iOS liefert im Vollbild
+  // und nach Drehen veraltete Werte). Mehrfach nachmessen, weil Safari die
+  // endgültige Größe erst nach der Animation meldet.
+  function updateAppHeight() {
+    const h = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    root.style.setProperty("--app-h", `${Math.round(h)}px`);
+  }
+  function remeasure() {
+    updateAppHeight();
+    [100, 300, 700].forEach((ms) => setTimeout(updateAppHeight, ms));
+  }
+  window.addEventListener("resize", remeasure);
+  window.addEventListener("orientationchange", remeasure);
+  if (window.visualViewport) window.visualViewport.addEventListener("resize", updateAppHeight);
+  updateAppHeight();
+
+  function onFullscreenChange() {
+    const on = !!fsElement();
+    document.body.classList.toggle("presenting", on);
+    $("btnPresent").textContent = on ? "✕ Vollbild beenden" : "⛶ Präsentation";
+    remeasure();
+  }
+  document.addEventListener("fullscreenchange", onFullscreenChange);
+  document.addEventListener("webkitfullscreenchange", onFullscreenChange);
+  document.addEventListener("keydown", (e) => {
+    if (e.target.closest("input, textarea")) return;
+    if ((e.key === "f" || e.key === "F") && !els.game.hidden) togglePresentation();
+  });
 
   function startGame(cat) {
     currentCategory = cat;
@@ -476,6 +523,7 @@
   $("btnNobody").onclick = () => award([]);
   $("btnNext").onclick = nextRound;
   $("btnEnd").onclick = endGame;
+  $("btnPresent").onclick = togglePresentation;
   $("btnAgain").onclick = () => { showScreen("setup"); renderTeamList(); };
   $("btnShowAlltime").onclick = showAlltimeOnly;
   $("btnResetAlltime").onclick = () => {

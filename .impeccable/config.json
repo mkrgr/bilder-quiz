@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-01T12:17:27.366Z",
+        "reason": "Claude: img src is set at runtime by app.js after the image search"
+      },
+      {
+        "rule": "radial-halo",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-01T12:17:47.186Z",
+        "reason": "Claude: style.css uses hard-edged radial circles (0 120px, transparent 121px) as flat decorative blobs on a light page, not a fading glow on a dark page"
+      }
+    ]
+  }
+}

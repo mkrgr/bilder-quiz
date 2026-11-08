@@ -201,3 +201,50 @@ main { max-width: 900px; margin: 0 auto; padding: 0 16px 32px; }
   header { flex-direction: column; align-items: flex-start; gap: 8px; }
   .scoreboard { justify-content: flex-start; }
 }
+
+/* ---------- Spielansicht: Rätselbereich maximal groß ---------- */
+body.in-game {
+  height: 100vh;
+  height: 100dvh;
+  height: var(--app-h, 100dvh); /* per JS gemessen – iPad-Safari meldet vh im Vollbild falsch */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+body.in-game header { max-width: none; width: 100%; padding: 6px 12px; }
+body.in-game h1 { font-size: 1.4rem; }
+body.in-game main {
+  max-width: none; width: 100%;
+  flex: 1; min-height: 0;
+  padding: 0 8px max(8px, env(safe-area-inset-bottom));
+  display: flex;
+}
+body.in-game #game {
+  flex: 1; min-height: 0;
+  display: flex; flex-direction: column;
+}
+body.in-game .topline { margin-bottom: 6px; }
+body.in-game .frame {
+  flex: 1; min-height: 0;
+  width: 100%;
+  aspect-ratio: auto;
+  border-width: 3px;
+  border-radius: 16px;
+  box-shadow: none;
+}
+body.in-game .timer { margin: 6px 0; flex-shrink: 0; }
+body.in-game .controls { flex-shrink: 0; gap: 10px; }
+body.in-game .credit { margin: 4px 0 0; font-size: .7rem; flex-shrink: 0; }
+
+.present-btn { padding: 4px 12px; font-size: .95rem; box-shadow: 0 3px 0 #c9bdf5; }
+
+/* ---------- Präsentationsmodus (Vollbild) ---------- */
+body.presenting { background: #1d1630; color: #fff; }
+body.presenting h1 { display: none; }
+body.presenting header { justify-content: center; padding: 4px 8px; }
+body.presenting main { padding: 0 4px max(6px, env(safe-area-inset-bottom)); }
+body.presenting .frame { border: none; border-radius: 0; }
+body.presenting .credit { display: none; }
+body.presenting .round-label,
+body.presenting .hint { color: #fff; }
+body.presenting .timer { background: #3a2f55; height: 8px; margin: 4px 0; }
