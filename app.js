@@ -330,12 +330,15 @@
     els.picture.style.transform = `scale(${scale})`;
   }
 
-  function runTimerBar() {
+  // ms < volle Dauer = Fortsetzen nach einer Pause:
+  // Balken läuft dann von seiner eingefrorenen Position weiter.
+  function runTimerBar(ms) {
     const bar = els.timerBar;
+    const full = cfg.secondsPerStep * 1000;
     bar.style.transition = "none";
-    bar.style.width = "0%";
+    bar.style.width = `${(1 - ms / full) * 100}%`;
     void bar.offsetWidth; // Neustart der Animation erzwingen
-    bar.style.transition = `width ${cfg.secondsPerStep}s linear`;
+    bar.style.transition = `width ${ms / 1000}s linear`;
     bar.style.width = "100%";
   }
 
@@ -391,12 +394,17 @@
     els.loading.hidden = true;
 
     renderStages();
+    setGuessButton(false);
     showControls("guess");
     scheduleStep();
   }
 
-  function scheduleStep() {
-    runTimerBar();
+  let stepEndsAt = 0;   // Zeitpunkt, an dem die aktuelle Zoomstufe abläuft
+  let remainingMs = 0;  // Restzeit der Stufe während einer Pause
+
+  function scheduleStep(ms = cfg.secondsPerStep * 1000) {
+    runTimerBar(ms);
+    stepEndsAt = Date.now() + ms;
     timer = setTimeout(() => {
       if (step < cfg.zoomSteps.length - 1) {
         step++;
@@ -406,7 +414,7 @@
       } else {
         reveal();
       }
-    }, cfg.secondsPerStep * 1000);
+    }, ms);
   }
 
   // Je früher erraten, desto mehr Punkte
@@ -414,8 +422,43 @@
     return cfg.zoomSteps.length - step;
   }
 
+  // 1. Klick „Ich weiß es!“: Zoom & Timer anhalten, Lösung noch verdeckt.
+  // 2. Klick „Auflösen“: Lösung zeigen und Punkte vergeben.
+  let paused = false;
+
+  function setGuessButton(isPaused) {
+    paused = isPaused;
+    const btn = $("btnGuess");
+    btn.textContent = isPaused ? "🔓 Auflösen" : "🙋 Ich weiß es!";
+    btn.classList.toggle("good", isPaused);
+    btn.classList.toggle("primary", !isPaused);
+    $("btnResume").hidden = !isPaused;
+  }
+
+  function pause() {
+    // Timer-Balken an der aktuellen Position einfrieren
+    const bar = els.timerBar;
+    const w = getComputedStyle(bar).width;
+    remainingMs = Math.max(0, stepEndsAt - Date.now());
+    stopTimer();
+    bar.style.width = w;
+    setGuessButton(true);
+  }
+
+  // Falsch geraten: Zoom läuft mit der Restzeit der aktuellen Stufe weiter
+  function resume() {
+    setGuessButton(false);
+    scheduleStep(Math.max(remainingMs, 300));
+  }
+
+  function onGuessClick() {
+    if (paused) reveal();
+    else pause();
+  }
+
   function reveal() {
     stopTimer();
+    setGuessButton(false);
     setZoom(1, true);
     els.answer.textContent = current.name;
     els.answer.hidden = false;
@@ -518,7 +561,8 @@
 
   // ---------- Start ----------
   $("btnAddTeam").onclick = addTeam;
-  $("btnGuess").onclick = reveal;
+  $("btnGuess").onclick = onGuessClick;
+  $("btnResume").onclick = resume;
   $("btnAward").onclick = () => award(picked);
   $("btnNobody").onclick = () => award([]);
   $("btnNext").onclick = nextRound;
